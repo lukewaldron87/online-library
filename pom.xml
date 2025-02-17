@@ -28,6 +28,7 @@
 	</scm>
 	<properties>
 		<java.version>21</java.version>
+		<org.mapstricy.version>1.6.3</org.mapstricy.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -60,6 +61,28 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+
+		<!-- MapStruct -->
+		<dependency>
+			<groupId>org.mapstruct</groupId>
+			<artifactId>mapstruct</artifactId>
+			<version>${org.mapstricy.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.mapstruct</groupId>
+			<artifactId>mapstruct-processor</artifactId>
+<!--			<scope>provided</scope>-->
+			<version>${org.mapstricy.version}</version>
+		</dependency>
+
+		<!-- Required for Lombok integration (if using Lombok) -->
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok-mapstruct-binding</artifactId>
+<!--			<scope>provided</scope>-->
+			<version>0.2.0</version>
+		</dependency>
+
 	</dependencies>
 
 	<build>
