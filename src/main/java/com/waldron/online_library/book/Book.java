@@ -1,8 +1,14 @@
 package com.waldron.online_library.book;
 
 import jakarta.persistence.*;
+import lombok.*;
 
 @Entity
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
+@Getter
+@Setter
 @Table(name = "book")
 public class Book {
 

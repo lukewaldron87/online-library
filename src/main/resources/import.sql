@@ -1,0 +1,5 @@
+INSERT INTO book (title, author, isbn, publication_year, description) VALUES ('Dracula', 'Bram Stoker', '9780141439846', 1897, 'A gothic horror novel introducing the iconic Count Dracula.');
+INSERT INTO book (title, author, isbn, publication_year, description) VALUES ('The Grapes of Wrath', 'John Steinbeck', '9780143039433', 1939, 'A classic novel depicting the struggles of a poor family during the Great Depression.');
+INSERT INTO book (title, author, isbn, publication_year, description) VALUES ('1984', 'George Orwell', '9780451524935', 1949, 'A dystopian novel about a totalitarian regime and the dangers of surveillance.');
+INSERT INTO book (title, author, isbn, publication_year, description) VALUES ('The Spy Who Came in from the Cold', 'John le Carré', '9780143124757', 1963, 'A gripping Cold War spy thriller exploring espionage and betrayal.');
+INSERT INTO book (title, author, isbn, publication_year, description) VALUES ('The Trial', 'Franz Kafka', '9780805209990', 1925, 'A novel about a man arrested and prosecuted by an inaccessible authority without knowing his crime.');

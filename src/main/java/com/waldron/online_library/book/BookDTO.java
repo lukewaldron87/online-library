@@ -1,20 +1,18 @@
 package com.waldron.online_library.book;
 
 import io.swagger.v3.oas.annotations.media.Schema;
-import jakarta.persistence.Column;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
+@Builder
 @Schema(description = "DTO for books")
 public class BookDTO {
 
     @Schema(description = "the id of the book")
-    private Long id;
+    private long id;
 
     @Schema(description = "the title of the book")
     private String title;

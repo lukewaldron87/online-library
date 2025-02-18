@@ -17,7 +17,6 @@ public class BookServiceImpl implements BookService{
     @Override
     public BookDTO createBook(CreateBookDTO createBookDTO) {
         Book book = bookMapper.toEntity(createBookDTO);
-        // todo why is book not mapping?
         book = bookRepository.save(book);
         return bookMapper.toDTO(book);
     }

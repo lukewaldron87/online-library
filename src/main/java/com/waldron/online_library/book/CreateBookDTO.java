@@ -1,15 +1,15 @@
 package com.waldron.online_library.book;
 
 import io.swagger.v3.oas.annotations.media.Schema;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
+@Builder
 @Schema(description = "DTO for creating books")
 public class CreateBookDTO {
-
-    //todo add swagger notation
 
     @Schema(description = "the title of the book")
     private String title;
