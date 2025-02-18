@@ -1,19 +1,28 @@
 package com.waldron.online_library.book;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import io.swagger.v3.oas.annotations.media.Schema;
+import lombok.Getter;
+import lombok.Setter;
 
+@Getter
+@Setter
+@Schema(description = "DTO for creating books")
 public class CreateBookDTO {
 
+    //todo add swagger notation
+
+    @Schema(description = "the title of the book")
     private String title;
 
+    @Schema(description = "the author of the book")
     private String author;
 
+    @Schema(description = "the isbn of the book")
     private String isbn;
 
+    @Schema(description = "the publicationYear of the book")
     private int publicationYear;
 
+    @Schema(description = "the description of the book")
     private String description;
 }

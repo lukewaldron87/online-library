@@ -1,29 +1,35 @@
 package com.waldron.online_library.book;
 
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/books")
 @RequiredArgsConstructor
 public class BookController {
 
+    //todo add swagger notation
+    //todo add tests
+
     private final BookService bookService;
 
     @PostMapping
-    public BookDTO createBook(CreateBookDTO createBookDTO){
+    @ResponseStatus(HttpStatus.CREATED)
+    public BookDTO createBook(@RequestBody @Valid CreateBookDTO createBookDTO){
         return bookService.createBook(createBookDTO);
     }
 
+    @GetMapping
+    public List<BookDTO> getBooks(){
+        //todo add pagination/sorting
+        return bookService.getBooks();
+    }
 
-
-//todo • Retrieve All Books
-//◦ Endpoint: GET /books
-//◦ Description: Return a list of all books. (Optional: add pagination/sorting)
-
-//            • Retrieve a Single Book by ID
+//todo            • Retrieve a Single Book by ID
 //◦ Endpoint: GET /books/{id}
 //◦ Description: Return the book with the given ID, or respond with 404 if not found.
 

@@ -7,7 +7,7 @@ import org.mapstruct.factory.Mappers;
 @Mapper(componentModel = MappingConstants.ComponentModel.SPRING)
 public interface BookMapper {
 
-    BookMapper INSTANCE = Mappers.getMapper(BookMapper.class);
+//    BookMapper INSTANCE = Mappers.getMapper(BookMapper.class);
 
     Book toEntity(CreateBookDTO createBookDTO);
     BookDTO toDTO(Book book);
