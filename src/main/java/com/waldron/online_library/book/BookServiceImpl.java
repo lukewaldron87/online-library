@@ -39,13 +39,12 @@ public class BookServiceImpl implements BookService{
 
     @Override
     public BookDTO updateBookForId(long id, @Valid UpdateBookDTO updateBookDTO) {
-        //todo Description: Update the details of the book with the specified ID. Validate input and
-        //return an error if the book does not exist.
 
+        //todo Validate input
         Book existingBook = bookRepository.findById(id)
-                .orElseThrow(() -> new NotFoundException(String.format("Could not find book with id %d",id)));;
-        // todo this accepts null. How to change to not allow null or blank?
+                .orElseThrow(() -> new NotFoundException(String.format("Could not find book with id %d",id)));
         bookMapper.updateCustomerFromDto(updateBookDTO, existingBook);
+        bookRepository.save(existingBook);
         return bookMapper.toBookDTO(existingBook);
     }
 }
