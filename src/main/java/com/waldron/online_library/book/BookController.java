@@ -1,5 +1,6 @@
 package com.waldron.online_library.book;
 
+import io.swagger.v3.oas.annotations.Parameter;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -24,45 +25,51 @@ public class BookController {
     }
 
     @GetMapping
+    @ResponseStatus(HttpStatus.OK)
     public List<BookDTO> getBooks(){
         //todo add pagination/sorting
         return bookService.getBooks();
     }
 
-//todo            • Retrieve a Single Book by ID
-//◦ Endpoint: GET /books/{id}
-//◦ Description: Return the book with the given ID, or respond with 404 if not found.
+    @GetMapping("{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public BookDTO getBookForID(@PathVariable("id") @Parameter(example = "1") long id){
+        return bookService.getBookForId(id);
+    }
 
-//todo  • Update an Existing Book
-//◦ Endpoint: PUT /books/{id}
-//◦ Description: Update the details of the book with the specified ID. Validate input and
-//return an error if the book does not exist.
+    @PutMapping("{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public BookDTO updateBookForId (
+            @PathVariable("id") @Parameter(example = "1") long id,
+            @RequestBody @Valid UpdateBookDTO updateBookDTO){
+        return bookService.updateBookForId(id, updateBookDTO);
+    }
 
-//• Delete a Book
-//◦ Endpoint: DELETE /books/{id}
-//◦ Description: Remove the book with the given ID from the database.
+    //todo• Delete a Book
+    //◦ Endpoint: DELETE /books/{id}
+    //◦ Description: Remove the book with the given ID from the database.
 
-//todo  • Search for Books
-//◦ Endpoint: GET /books/search
-//◦ Description: Allow searching by title and/or author using query parameters.
-//◦ Examples:
-//todo  ▪ GET /books/search?title=Spring
-//▪ GET /books/search?author=Smith
-//▪ GET /books/search?title=Spring&author=Smith
+    //todo  • Search for Books
+    //◦ Endpoint: GET /books/search
+    //◦ Description: Allow searching by title and/or author using query parameters.
+    //◦ Examples:
+    //todo  ▪ GET /books/search?title=Spring
+    //▪ GET /books/search?author=Smith
+    //▪ GET /books/search?title=Spring&author=Smith
 
-//todo• AI-Powered Book Insights
-//◦ Endpoint: GET /books/{id}/ai-insights
-//◦ Description:
-//            ▪ Retrieve the specified book using its ID.
-//▪ Build a prompt using the book’s description (and optionally its title and
-//            author).
-//            ▪ Integrate with an external AI service (e.g., OpenAI) by making an HTTP call
-//    to generate a short, engaging tagline or summary.
-//            ▪ Return the AI-generated insights along with the book’s details.
-//            ◦ Notes:
-//            ▪ Externalize API keys and endpoints in your configuration (e.g., using
-//            application.properties or application.yml).
-//            ▪ Use Spring’s RestTemplate or WebClient for the HTTP call.
-//▪ Gracefully handle errors (e.g., API timeouts or failures) with appropriate
-//    HTTP statuses and error messages.
+    //todo• AI-Powered Book Insights
+    //◦ Endpoint: GET /books/{id}/ai-insights
+    //◦ Description:
+    //            ▪ Retrieve the specified book using its ID.
+    //▪ Build a prompt using the book’s description (and optionally its title and
+    //            author).
+    //            ▪ Integrate with an external AI service (e.g., OpenAI) by making an HTTP call
+    //    to generate a short, engaging tagline or summary.
+    //            ▪ Return the AI-generated insights along with the book’s details.
+    //            ◦ Notes:
+    //            ▪ Externalize API keys and endpoints in your configuration (e.g., using
+    //            application.properties or application.yml).
+    //            ▪ Use Spring’s RestTemplate or WebClient for the HTTP call.
+    //▪ Gracefully handle errors (e.g., API timeouts or failures) with appropriate
+    //    HTTP statuses and error messages.
 }
