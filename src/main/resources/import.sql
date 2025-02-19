@@ -3,3 +3,4 @@ INSERT INTO book (title, author, isbn, publication_year, description) VALUES ('T
 INSERT INTO book (title, author, isbn, publication_year, description) VALUES ('1984', 'George Orwell', '9780451524935', 1949, 'A dystopian novel about a totalitarian regime and the dangers of surveillance.');
 INSERT INTO book (title, author, isbn, publication_year, description) VALUES ('The Spy Who Came in from the Cold', 'John le Carré', '9780143124757', 1963, 'A gripping Cold War spy thriller exploring espionage and betrayal.');
 INSERT INTO book (title, author, isbn, publication_year, description) VALUES ('The Trial', 'Franz Kafka', '9780805209990', 1925, 'A novel about a man arrested and prosecuted by an inaccessible authority without knowing his crime.');
+INSERT INTO book (title, author, isbn, publication_year, description) VALUES ('Tinker Tailor Soldier Spy', 'John le Carré', '9780143119784', 1963, 'A gripping Cold War spy thriller exploring espionage and betrayal.');

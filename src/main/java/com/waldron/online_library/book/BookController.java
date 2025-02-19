@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/books")
+@RequestMapping("books")
 @RequiredArgsConstructor
 public class BookController {
 
@@ -45,17 +45,19 @@ public class BookController {
         return bookService.updateBookForId(id, updateBookDTO);
     }
 
-    //todo• Delete a Book
-    //◦ Endpoint: DELETE /books/{id}
-    //◦ Description: Remove the book with the given ID from the database.
+    @DeleteMapping("{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public void deleteBookForId(@PathVariable("id") @Parameter(example = "1") long id){
+        bookService.deleteBookForId(id);
+    }
 
-    //todo  • Search for Books
-    //◦ Endpoint: GET /books/search
-    //◦ Description: Allow searching by title and/or author using query parameters.
-    //◦ Examples:
-    //todo  ▪ GET /books/search?title=Spring
-    //▪ GET /books/search?author=Smith
-    //▪ GET /books/search?title=Spring&author=Smith
+    @GetMapping("search")
+    @ResponseStatus(HttpStatus.OK)
+    public List<BookDTO> getBooksForTitleOrAuthor(
+            @RequestParam(name = "title", required = false) @Parameter(example = "Dracula") String title,
+            @RequestParam(name = "author", required = false) @Parameter(example = "Bram Stoker") String author){
+        return bookService.getBooksForTitleOrAuthor(title, author);
+    }
 
     //todo• AI-Powered Book Insights
     //◦ Endpoint: GET /books/{id}/ai-insights

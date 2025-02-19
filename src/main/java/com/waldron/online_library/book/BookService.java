@@ -12,4 +12,8 @@ public interface BookService {
     BookDTO getBookForId(long id);
 
     BookDTO updateBookForId(long id, @Valid UpdateBookDTO updateBookDTO);
+
+    void deleteBookForId(long id);
+
+    List<BookDTO> getBooksForTitleOrAuthor(String title, String author);
 }

@@ -16,6 +16,8 @@ public class BookServiceImpl implements BookService{
 
     private final BookRepository bookRepository;
 
+    private static final String BOOK_NOT_FOUND_ERROR_MESSAGE = "Could not find book with id %d";
+
     @Override
     public BookDTO createBook(CreateBookDTO createBookDTO) {
         Book book = bookMapper.toEntity(createBookDTO);
@@ -34,17 +36,34 @@ public class BookServiceImpl implements BookService{
     public BookDTO getBookForId(long id) {
         return bookRepository.findById(id)
                 .map(bookMapper::toBookDTO)
-                .orElseThrow(() -> new NotFoundException(String.format("Could not find book with id %d",id)));
+                .orElseThrow(() -> new NotFoundException(String.format(BOOK_NOT_FOUND_ERROR_MESSAGE,id)));
     }
 
     @Override
     public BookDTO updateBookForId(long id, @Valid UpdateBookDTO updateBookDTO) {
 
         //todo Validate input
-        Book existingBook = bookRepository.findById(id)
-                .orElseThrow(() -> new NotFoundException(String.format("Could not find book with id %d",id)));
+        Book existingBook = getBookEntityForId(id);
         bookMapper.updateCustomerFromDto(updateBookDTO, existingBook);
         bookRepository.save(existingBook);
         return bookMapper.toBookDTO(existingBook);
+    }
+
+    private Book getBookEntityForId(long id) {
+        return bookRepository.findById(id)
+                .orElseThrow(() -> new NotFoundException(String.format(BOOK_NOT_FOUND_ERROR_MESSAGE, id)));
+    }
+
+    @Override
+    public void deleteBookForId(long id) {
+        getBookEntityForId(id);
+        bookRepository.deleteById(id);
+    }
+
+    @Override
+    public List<BookDTO> getBooksForTitleOrAuthor(String title, String author) {
+        return bookRepository.findAllByTitleOrAuthor(title, author).stream()
+                .map(bookMapper::toBookDTO)
+                .toList();
     }
 }
