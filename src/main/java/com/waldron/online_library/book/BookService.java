@@ -16,4 +16,6 @@ public interface BookService {
     void deleteBookForId(long id);
 
     List<BookDTO> getBooksForTitleOrAuthor(String title, String author);
+
+    BookWithAiInsightDTO getBookAIInsightsForID(long id);
 }

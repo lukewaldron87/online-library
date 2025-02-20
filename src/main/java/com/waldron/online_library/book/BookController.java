@@ -59,19 +59,9 @@ public class BookController {
         return bookService.getBooksForTitleOrAuthor(title, author);
     }
 
-    //todo• AI-Powered Book Insights
-    //◦ Endpoint: GET /books/{id}/ai-insights
-    //◦ Description:
-    //            ▪ Retrieve the specified book using its ID.
-    //▪ Build a prompt using the book’s description (and optionally its title and
-    //            author).
-    //            ▪ Integrate with an external AI service (e.g., OpenAI) by making an HTTP call
-    //    to generate a short, engaging tagline or summary.
-    //            ▪ Return the AI-generated insights along with the book’s details.
-    //            ◦ Notes:
-    //            ▪ Externalize API keys and endpoints in your configuration (e.g., using
-    //            application.properties or application.yml).
-    //            ▪ Use Spring’s RestTemplate or WebClient for the HTTP call.
-    //▪ Gracefully handle errors (e.g., API timeouts or failures) with appropriate
-    //    HTTP statuses and error messages.
+    @GetMapping("{id}/ai-insights")
+    @ResponseStatus(HttpStatus.OK)
+    public BookWithAiInsightDTO getBookAIInsightsForID(@PathVariable("id") @Parameter(example = "1") long id){
+        return bookService.getBookAIInsightsForID(id);
+    }
 }
