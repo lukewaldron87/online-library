@@ -1,14 +1,16 @@
 package com.waldron.online_library.cohereai;
 
+import io.netty.channel.ChannelOption;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.http.client.ClientHttpRequestFactory;
-import org.springframework.http.client.SimpleClientHttpRequestFactory;
 import org.springframework.http.client.reactive.ReactorClientHttpConnector;
-import org.springframework.web.reactive.function.client.WebClient;
 import org.springframework.web.reactive.function.client.ExchangeFilterFunction;
+import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Mono;
+import reactor.netty.http.client.HttpClient;
+
+import java.time.Duration;
 
 @Configuration
 public class WebClientCongif {
@@ -21,12 +23,17 @@ public class WebClientCongif {
 
     @Bean
     public WebClient cohereWebClient() {
+
+        HttpClient client = HttpClient.create()
+                .option(ChannelOption.CONNECT_TIMEOUT_MILLIS, 5000)
+                .responseTimeout(Duration.ofSeconds(1));
+
         return WebClient.builder()
                 .baseUrl(url)
                 .defaultHeader("Authorization", "Bearer " + apiKey)
                 .defaultHeader("Content-Type", "application/json")
                 .filter(logRequest())
-                .clientConnector(new ReactorClientHttpConnector())
+                .clientConnector(new ReactorClientHttpConnector(client))
                 .build();
     }
 

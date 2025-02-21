@@ -12,7 +12,6 @@ import java.util.List;
 @RequiredArgsConstructor
 public class BookServiceImpl implements BookService{
 
-    //todo add tests
     private final BookMapper bookMapper;
 
     private final BookRepository bookRepository;
@@ -65,27 +64,10 @@ public class BookServiceImpl implements BookService{
                 .toList();
     }
 
-    //todo• AI-Powered Book Insights
-    //◦ Endpoint: GET /books/{id}/ai-insights
-    //◦ Description:
-    //            ▪ Retrieve the specified book using its ID.
-    //▪ Build a prompt using the book’s description (and optionally its title and
-    //            author).
-    //            ▪ Integrate with an external AI service (e.g., OpenAI) by making an HTTP call
-    //    to generate a short, engaging tagline or summary.
-    //            ▪ Return the AI-generated insights along with the book’s details.
-    //            ◦ Notes:
-    //            ▪ Externalize API keys and endpoints in your configuration (e.g., using
-    //            application.properties or application.yml).
-    //            ▪ Use Spring’s RestTemplate or WebClient for the HTTP call.
-    //▪ Gracefully handle errors (e.g., API timeouts or failures) with appropriate
-    //    HTTP statuses and error messages.
     @Override
     public BookWithAiInsightDTO getBookAIInsightsForID(long id) {
         Book book = getBookEntityForId(id);
         BookDTO bookDTO = bookMapper.toBookDTO(book);
-
-        // todo: move to a generic aiService and make more generic
         String insights = cohereAiService.getInsightForBookViaHttp(bookDTO);
         return BookWithAiInsightDTO.builder()
                 .book(bookDTO)
