@@ -1,5 +1,9 @@
 package com.waldron.online_library.book;
 
+import com.waldron.online_library.book.dto.BookDTO;
+import com.waldron.online_library.book.dto.BookWithAiInsightDTO;
+import com.waldron.online_library.book.dto.CreateBookDTO;
+import com.waldron.online_library.book.dto.UpdateBookDTO;
 import io.swagger.v3.oas.annotations.Parameter;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -9,12 +13,12 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@CrossOrigin
 @RequestMapping("books")
 @RequiredArgsConstructor
 public class BookController {
 
     //todo add swagger notation
-    //todo add tests
 
     private final BookService bookService;
 

@@ -1,13 +1,13 @@
-package com.waldron.online_library.book;
+package com.waldron.online_library.book.dto;
 
 import io.swagger.v3.oas.annotations.media.Schema;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 @Getter
 @Setter
 @Builder
+@NoArgsConstructor
+@AllArgsConstructor
 @Schema(description = "DTO for books")
 public class BookDTO {
 

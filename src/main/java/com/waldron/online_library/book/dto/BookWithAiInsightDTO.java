@@ -1,4 +1,4 @@
-package com.waldron.online_library.book;
+package com.waldron.online_library.book.dto;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Builder;

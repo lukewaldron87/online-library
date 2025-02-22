@@ -1,5 +1,9 @@
 package com.waldron.online_library.book;
 
+import com.waldron.online_library.book.dto.BookDTO;
+import com.waldron.online_library.book.dto.BookWithAiInsightDTO;
+import com.waldron.online_library.book.dto.CreateBookDTO;
+import com.waldron.online_library.book.dto.UpdateBookDTO;
 import com.waldron.online_library.cohereai.CohereAiService;
 import com.waldron.online_library.exception.NotFoundException;
 import jakarta.validation.Valid;
@@ -44,7 +48,6 @@ public class BookServiceImpl implements BookService{
     @Override
     public BookDTO updateBookForId(long id, @Valid UpdateBookDTO updateBookDTO) {
 
-        //todo Validate input
         Book existingBook = getBookEntityForId(id);
         bookMapper.updateCustomerFromDto(updateBookDTO, existingBook);
         bookRepository.save(existingBook);

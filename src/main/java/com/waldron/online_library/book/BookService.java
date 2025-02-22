@@ -1,5 +1,9 @@
 package com.waldron.online_library.book;
 
+import com.waldron.online_library.book.dto.BookDTO;
+import com.waldron.online_library.book.dto.BookWithAiInsightDTO;
+import com.waldron.online_library.book.dto.CreateBookDTO;
+import com.waldron.online_library.book.dto.UpdateBookDTO;
 import jakarta.validation.Valid;
 
 import java.util.List;
