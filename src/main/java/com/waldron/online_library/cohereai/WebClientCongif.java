@@ -26,7 +26,7 @@ public class WebClientCongif {
 
         HttpClient client = HttpClient.create()
                 .option(ChannelOption.CONNECT_TIMEOUT_MILLIS, 5000)
-                .responseTimeout(Duration.ofSeconds(1));
+                .responseTimeout(Duration.ofSeconds(30));
 
         return WebClient.builder()
                 .baseUrl(url)

@@ -6,7 +6,7 @@ import com.cohere.api.requests.GenerateRequest;
 import com.cohere.api.types.GenerateStreamEndResponse;
 import com.cohere.api.types.NonStreamedChatResponse;
 import com.cohere.api.types.SingleGenerationInStream;
-import com.waldron.online_library.book.BookDTO;
+import com.waldron.online_library.book.dto.BookDTO;
 import com.waldron.online_library.cohereai.exception.CohereException;
 import com.waldron.online_library.exception.NotFoundException;
 import lombok.RequiredArgsConstructor;
@@ -16,7 +16,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Mono;
 
-import java.time.Duration;
 import java.util.stream.Collectors;
 
 @Service
